@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Toko</title>
+<style>
+:root{--ac:#7c3aed;--ac2:#4f46e5;--ink:#111827;--mu:#6b7280;--ln:#e5e7eb;--bg:#f7f7fb}
+*{box-sizing:border-box}body{margin:0;font-family:"Plus Jakarta Sans",Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--ink)}
+button,input,textarea{font:inherit}button{cursor:pointer;border:0}
+header{position:sticky;top:0;z-index:5;background:#fffc;backdrop-filter:blur(10px);border-bottom:1px solid var(--ln);padding:12px 20px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;color:var(--ac);max-width:1000px;margin:0 auto}.logo img{width:34px;height:34px;border-radius:10px;object-fit:contain}.logo i{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--ac),#06b6d4)}
+main{max-width:1000px;margin:0 auto;padding:0 16px 60px}
+.hero{text-align:center;padding:34px 0 18px}.pill{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.08em;color:var(--ac);background:#fff;border:1px solid var(--ln);border-radius:99px;padding:7px 14px}
+.hero h1{font-size:clamp(28px,6vw,44px);line-height:1.12;margin:16px 0 10px;letter-spacing:-.02em}.hero h1 span{background:linear-gradient(90deg,var(--ac2),var(--ac));-webkit-background-clip:text;color:transparent}.hero p{color:var(--mu);margin:0 auto;max-width:520px}
+.box{background:#fff;border:1px solid var(--ln);border-radius:20px;padding:14px;box-shadow:0 8px 30px #4f46e50d;margin:20px 0}
+.in{width:100%;border:1px solid var(--ln);border-radius:14px;padding:13px 14px;background:#fff;outline:0}.in:focus{border-color:var(--ac);box-shadow:0 0 0 3px #7c3aed22}
+.row{display:flex;gap:10px;margin-top:10px}.btn{background:linear-gradient(135deg,var(--ac2),var(--ac));color:#fff;font-weight:800;border-radius:14px;padding:13px 20px;box-shadow:0 8px 20px #7c3aed40;text-decoration:none;display:inline-block;text-align:center}.btn.ghost{background:#fff;color:var(--mu);box-shadow:none;border:1px solid var(--ln)}
+.chips{display:flex;gap:10px;overflow-x:auto;padding:4px 2px 10px}.chip{white-space:nowrap;background:#fff;border:1px solid var(--ln);border-radius:14px;padding:11px 18px;font-weight:700;color:var(--mu)}.chip.on{background:linear-gradient(135deg,var(--ac2),var(--ac));color:#fff;border-color:transparent;box-shadow:0 8px 20px #7c3aed40}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}@media(min-width:700px){.grid{grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:18px}}
+.pc{background:#fff;border:1px solid var(--ln);border-radius:22px;padding:12px;text-align:center;box-shadow:0 6px 20px #11182708;transition:.15s}.pc:hover:not(:disabled){transform:translateY(-3px);box-shadow:0 14px 30px #7c3aed1f}.pc:disabled{opacity:.55;cursor:not-allowed}
+.ic{position:relative;background:#f3f4f8;border-radius:16px;aspect-ratio:1;display:grid;place-items:center;margin-bottom:12px;overflow:hidden}.ic img{width:62%;height:62%;object-fit:contain;border-radius:14px}.ic b{font-size:44px;color:var(--ac)}
+.bd{position:absolute;top:8px;right:8px;font-size:10px;font-weight:800;border-radius:7px;padding:4px 8px;background:#fee2e2;color:#dc2626}.bd.AUTO{background:#dcfce7;color:#16a34a}.bd.NEW{background:#dbeafe;color:#2563eb}
+.cat{font-size:11px;font-weight:800;color:var(--ac);letter-spacing:.08em;text-transform:uppercase}.nm{font-weight:800;margin:3px 0;font-size:15px}.sub{font-size:12px;color:var(--mu);background:#f7f7fb;border-radius:8px;padding:6px;margin:8px 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pr{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--mu)}.pr b{color:var(--ac);font-size:15px}
+.ov{position:fixed;inset:0;background:#111827a6;display:none;align-items:center;justify-content:center;padding:16px;z-index:20;backdrop-filter:blur(3px)}.ov.on{display:flex}
+.md{background:#fff;border-radius:28px;width:100%;max-width:460px;max-height:92vh;overflow:auto;padding:22px}.md h3{margin:0 0 16px;font-size:20px}.x{float:right;background:#f3f4f6;border-radius:50%;width:34px;height:34px;color:var(--mu);font-size:18px}
+.it{background:#f7f7fb;border:1px solid var(--ln);border-radius:18px;padding:16px}.it small,.lb{display:block;font-size:11px;font-weight:800;letter-spacing:.1em;color:var(--mu);text-transform:uppercase;margin:16px 0 8px}.it small{margin:0 0 4px}.it h4{margin:0 0 8px;font-size:18px}.it p{margin:0 0 12px;border-left:3px solid var(--ac);padding-left:12px;color:var(--mu);font-size:13px;white-space:pre-wrap}
+.hg{display:flex;justify-content:space-between;border-top:1px dashed var(--ln);padding-top:12px;font-weight:800;font-size:12px;color:var(--mu);letter-spacing:.06em}.hg b{color:var(--ac);font-size:16px}
+.qty{display:flex;border:1px solid var(--ln);border-radius:14px;overflow:hidden}.qty button{width:52px;background:#f7f7fb;font-size:20px;font-weight:800;color:var(--mu)}.qty input{flex:1;text-align:center;border:0;font-weight:800;font-size:18px;outline:0;min-width:0}
+.pm{display:flex;align-items:center;gap:12px;border:1px solid #c4b5fd;background:#f5f3ff;border-radius:16px;padding:12px}.pm i{width:44px;height:44px;border-radius:12px;background:#fff;display:grid;place-items:center;font-style:normal;font-weight:900;color:var(--ac)}.pm span{display:block;font-size:12px;color:var(--mu)}.pm em{margin-left:auto;background:var(--ac);color:#fff;border-radius:50%;width:26px;height:26px;display:grid;place-items:center;font-style:normal}
+.help{font-size:12px;color:var(--mu);margin:6px 2px 0}.tot{display:flex;justify-content:space-between;align-items:center;background:#ecfdf5;border:1px solid #a7f3d0;border-radius:16px;padding:16px;margin:18px 0;font-weight:800;color:#047857;font-size:13px;letter-spacing:.06em}.tot b{font-size:26px}
+.err{color:#dc2626;font-size:13px;min-height:18px;margin:8px 0}.two{display:grid;grid-template-columns:1fr 1.2fr;gap:12px}
+.card{background:#fff;border:1px solid var(--ln);border-radius:24px;padding:22px;margin-top:22px;box-shadow:0 8px 30px #4f46e50d}.st{display:inline-block;border-radius:99px;padding:6px 14px;font-weight:800;font-size:12px}.st.pending{background:#fef3c7;color:#b45309}.st.done{background:#dcfce7;color:#15803d}.st.paid{background:#dbeafe;color:#1d4ed8}.st.expire{background:#fee2e2;color:#b91c1c}
+.qr{display:block;margin:16px auto;width:min(280px,80%);border-radius:16px;border:1px solid var(--ln);padding:8px;background:#fff}.mu{color:var(--mu)}.kv{display:flex;align-items:center;gap:10px;border:1px solid var(--ln);background:#f7f7fb;border-radius:14px;padding:10px 12px;margin-top:8px}.kv small{width:74px;font-weight:800;color:var(--mu);font-size:11px;text-transform:uppercase}.kv code{flex:1;word-break:break-all;font-size:14px}.kv button{background:#fff;border:1px solid var(--ln);border-radius:9px;padding:6px 10px;font-size:12px;font-weight:700;color:var(--ac)}
+</style></head><body>
+<header><div class="logo"><i id="lg"></i><span id="nm"></span></div></header>
+<main id="app"></main>
+<div class="ov" id="ov"><div class="md" id="md"></div></div>
+<script>
+const $=s=>document.querySelector(s),E=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])),rp=n=>'Rp '+Number(n).toLocaleString('id-ID');
+async function api(p,b){const r=await fetch('/api/'+p,b===undefined?{}:{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(b)});const j=await r.json().catch(()=>({}));if(!r.ok)throw new Error(j.error||'Terjadi kesalahan');return j}
+let P=[],cat='Semua',q='';
+const icon=p=>p.icon?'<img src="'+E(p.icon)+'" alt="">':'<b>'+E((p.name[0]||'?').toUpperCase())+'</b>';
+function home(){
+  $('#app').innerHTML='<section class="hero"><span class="pill">AKUN PREMIUM OTOMATIS</span><h1>Akses Apps Premium,<br><span>Harga Bikin Senyum.</span></h1><p>Bayar pakai QRIS, akun langsung dikirim otomatis ke WhatsApp kamu. Cepat dan bergaransi.</p></section><div class="box"><input class="in" id="sq" placeholder="Cari layanan (cth: Spotify)..."><div class="row"><input class="in" id="iv" placeholder="Cek ID Invoice..."><button class="btn" id="ck">Cek &rarr;</button></div></div><div class="chips" id="ch"></div><div class="grid" id="gd"></div>';
+  $('#sq').oninput=e=>{q=e.target.value.toLowerCase();list()};
+  $('#ck').onclick=()=>{const v=$('#iv').value.trim();if(v)location.href='?inv='+encodeURIComponent(v.toUpperCase())};
+  list();
+}
+function list(){
+  const cs=['Semua',...new Set(P.map(p=>p.category).filter(Boolean))];
+  $('#ch').innerHTML=cs.map(c=>'<button class="chip '+(c==cat?'on':'')+'" data-c="'+E(c)+'">'+E(c)+'</button>').join('');
+  document.querySelectorAll('.chip').forEach(b=>b.onclick=()=>{cat=b.dataset.c;list()});
+  const v=P.filter(p=>(cat=='Semua'||p.category==cat)&&(p.name+' '+p.desc).toLowerCase().includes(q));
+  $('#gd').innerHTML=v.map(p=>'<button class="pc" data-i="'+p.id+'" '+(p.stock?'':'disabled')+'><div class="ic">'+(p.badge&&p.stock?'<span class="bd '+p.badge+'">'+p.badge+'</span>':'')+icon(p)+'</div><div class="cat">'+E(p.category||'Produk')+'</div><div class="nm">'+E(p.name)+'</div><div class="sub">'+E((p.desc||'').split('\n')[0]||'Akun premium')+'</div><div class="pr"><b>'+rp(p.price)+'</b><span>'+(p.stock?'Stok '+p.stock:'Habis')+'</span></div></button>').join('')||'<p class="mu">Produk tidak ditemukan.</p>';
+  document.querySelectorAll('.pc').forEach(b=>b.onclick=()=>buy(P.find(p=>p.id==b.dataset.i)));
+}
+function buy(p){
+  let n=1,dc=0,vk='';const max=Math.min(10,p.stock);
+  $('#md').innerHTML='<button class="x" id="cl">&times;</button><h3>Detail Pesanan</h3><div class="it"><small>Item dipilih</small><h4>'+E(p.name)+'</h4>'+(p.desc?'<p>'+E(p.desc)+'</p>':'')+'<div class="hg"><span>HARGA SATUAN</span><b>'+rp(p.price)+'</b></div></div><span class="lb">Jumlah beli</span><div class="qty"><button id="mn">&minus;</button><input id="qn" value="1" inputmode="numeric"><button id="pl">+</button></div><span class="lb">Metode pembayaran</span><div class="pm"><i>QR</i><div><b>QRIS (Otomatis)</b><span>Scan via DANA, GoPay, OVO, dll.</span></div><em>&#10003;</em></div><span class="lb">Nomor WhatsApp aktif</span><input class="in" id="wa" type="tel" inputmode="tel" placeholder="0812xxxxxxxx"><div class="help">Invoice dan akun akan dikirim ke WhatsApp ini.</div><span class="lb">Kode voucher (opsional)</span><div class="row" style="margin:0"><input class="in" id="vc" placeholder="Masukkan kode" style="text-transform:uppercase"><button class="btn ghost" id="vb" type="button">Pakai</button></div><div class="help" id="vm"></div><div class="tot"><span>TOTAL BAYAR</span><b id="tt"></b></div><div class="err" id="er"></div><div class="two"><button class="btn ghost" id="bt">BATAL</button><button class="btn" id="by">BELI &rarr;</button></div>';
+  const set=v=>{n=Math.max(1,Math.min(max,parseInt(v)||1));$('#qn').value=n;$('#tt').textContent=rp(n*p.price-dc)};set(1);
+  const chk=async()=>{const c=$('#vc').value.trim();if(!c){dc=0;vk='';$('#vm').textContent='';return set(n)}try{const r=await api('voucher/check',{code:c,pid:p.id,qty:n});dc=r.discount;vk=r.code;$('#vm').style.color='#15803d';$('#vm').textContent='Voucher '+r.code+' dipakai, hemat '+rp(dc)}catch(e){dc=0;vk='';$('#vm').style.color='#dc2626';$('#vm').textContent=e.message}set(n)};
+  const sq=v=>{set(v);if(vk)chk()};$('#vb').onclick=chk;
+  $('#mn').onclick=()=>sq(n-1);$('#pl').onclick=()=>sq(n+1);$('#qn').onchange=e=>sq(e.target.value);
+  const close=()=>$('#ov').classList.remove('on');$('#cl').onclick=$('#bt').onclick=close;
+  $('#by').onclick=async()=>{$('#by').disabled=true;$('#er').textContent='';try{const r=await api('order',{pid:p.id,qty:n,wa:$('#wa').value,voucher:vk});location.href='?inv='+r.id}catch(e){$('#er').textContent=e.message;$('#by').disabled=false}};
+  $('#ov').classList.add('on');
+}
+const kv=(l,v)=>'<div class="kv"><small>'+l+'</small><code>'+E(v)+'</code><button data-cp="'+E(v)+'">Salin</button></div>';
+function draw(o){
+  const S={pending:'Menunggu pembayaran',paid:'Dibayar, diproses',done:'Selesai',expire:'Kedaluwarsa'};
+  let h='<span class="st '+o.status+'">'+S[o.status]+'</span><h2 style="margin:14px 0 4px">'+E(o.pname)+' x'+o.qty+'</h2><div class="mu">Invoice <b>'+o.id+'</b> &middot; WhatsApp '+E(o.wa)+'</div>';
+  if(o.status=='pending')h+=(o.qrUrl?'<img class="qr" src="'+E(o.qrUrl)+'" alt="QRIS">':'')+'<div style="text-align:center">'+(o.discount?'<div class="mu">Diskon voucher '+E(o.voucher)+': -'+rp(o.discount)+'</div>':'')+'<div class="mu">Total bayar</div><div style="font-size:30px;font-weight:800;color:var(--ac)">'+rp(o.total)+'</div><p class="mu">Scan dengan aplikasi bank atau e-wallet. Halaman ini otomatis berubah setelah pembayaran terdeteksi.'+(o.expiry?'<br>Batas bayar: '+E(o.expiry):'')+'</p><a class="btn" href="'+E(o.payUrl)+'" target="_blank" rel="noopener">Buka halaman pembayaran</a></div>';
+  if(o.status=='paid')h+='<p>'+E(o.note||'Pembayaran diterima, akun sedang disiapkan...')+'</p>';
+  if(o.status=='expire')h+='<p class="mu">Waktu pembayaran habis. Silakan buat pesanan baru.</p>';
+  if(o.status=='done'){h+='<p style="color:#15803d;font-weight:700">Pembayaran berhasil. Berikut akun kamu (salinan juga dikirim ke WhatsApp):</p>';
+    (o.items||[]).forEach((d,i)=>{h+='<div style="margin-top:14px">'+(o.qty>1?'<b>Akun '+(i+1)+'</b>':'')+(d.link?kv('Link',d.link)+'<a class="btn" style="margin-top:10px" href="'+E(d.link)+'" target="_blank" rel="noopener">Buka link</a>':kv('Email',d.email)+kv('Password',d.password)+(d.pin?kv('PIN',d.pin):'')+(d.profile?kv('Profile',d.profile):'')+(d.a2f?kv('A2F',d.a2f):''))+'</div>'});}
+  h+='<p style="margin-top:22px"><a href="/" class="mu">&larr; Kembali ke toko</a></p>';
+  $('#iv2').innerHTML=h;
+  document.querySelectorAll('[data-cp]').forEach(b=>b.onclick=()=>{navigator.clipboard.writeText(b.dataset.cp);b.textContent='Tersalin'});
+}
+async function invoice(id){
+  $('#app').innerHTML='<div class="card" id="iv2">Memuat...</div>';
+  const tick=async()=>{let o;try{o=await api('order?id='+encodeURIComponent(id))}catch(e){$('#iv2').innerHTML='<h2>Invoice tidak ditemukan</h2><p class="mu">'+E(e.message)+'</p><a class="btn" href="/">Kembali ke toko</a>';return}
+    draw(o);if(o.status=='pending'||o.status=='paid')setTimeout(tick,4000)};tick();
+}
+(async()=>{
+  const inv=new URLSearchParams(location.search).get('inv');
+  try{const c=await api('config');$('#nm').textContent=c.name;document.title=c.name;if(c.logo){$('#lg').outerHTML='<img src="'+E(c.logo)+'" alt="">';const l=document.querySelector('link[rel=icon]')||document.head.appendChild(Object.assign(document.createElement('link'),{rel:'icon'}));l.href=c.logo}}catch{}
+  if(inv)return invoice(inv);
+  try{P=await api('products')}catch(e){}
+  home();
+})();
+$('#ov').onclick=e=>{if(e.target.id=='ov')$('#ov').classList.remove('on')};
+</script></body></html>

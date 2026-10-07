@@ -1,0 +1,7 @@
+{
+  "cleanUrls": true,
+  "functions": { "api/index.cjs": { "includeFiles": "public/**" } },
+  "rewrites": [
+    { "source": "/api/:path*", "destination": "/api/index?__p=api/:path*" }
+  ]
+}
